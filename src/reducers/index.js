@@ -1,9 +1,6 @@
 import { combineReducers } from "redux";
-
-const dummy = () => {
-  return null;
-};
+import postReducer from './postReducer';
 
 export default combineReducers({
-  dummy
+  posts: postReducer
 });
