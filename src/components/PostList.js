@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchPosts } from "../actions";
+import User from './User';
 
 class PostList extends React.Component {
   componentDidMount() {
@@ -8,10 +9,7 @@ class PostList extends React.Component {
   }
 
   renderList() {
-    let listCount = 0;
     return this.props.posts.map(e => {
-      if(listCount < 10){
-        listCount++;
       return (
         <div className="item" key={e.id} style={{"marginBottom":"20px"}}>
           <i className="large middle aligned icon user" />
@@ -19,21 +17,24 @@ class PostList extends React.Component {
             <div className='description'>
               <h2>{e.title}</h2>
               <p>{e.body}</p>
+              <p>{e.userId}</p>
             </div>
           </div>
+          <User userId={e.userId} />
         </div>
-      )}
+      )
     })
   }
 
   render() {
-    console.log(this.props.posts);
     return <div className='ui relaxed divided list'>{this.renderList()}</div>;
   }
 }
 
 const mapStateToProps = (state) => {
-  return {posts: state.posts};
+  return {
+      posts: state.posts
+    };
 }
 
 export default connect(
