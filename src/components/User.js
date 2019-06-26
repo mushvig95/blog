@@ -9,12 +9,7 @@ class User extends React.Component {
     }
 
     render() {
-        if (!this.props.user) {
-            return null;
-        } else {
-            return <div>{this.props.user.name}</div>
-        }
-        
+        return this.props.user ? <div>{this.props.user.name}</div> : null  
     }
 };
 
